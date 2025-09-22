@@ -47,8 +47,15 @@ export class CharacterStore {
         this._totalPages.set(response.info.pages);
         this._loading.set(false);
       },
-      error: () => {
-        this._error.set('Erro ao carregar personagens');
+      error: error => {
+        if (error.status === 404 && currentSearch) {
+          this._characters.set([]);
+          this._totalPages.set(0);
+          this._error.set(null);
+        } else {
+          this._error.set('Erro ao carregar personagens');
+          this._characters.set([]);
+        }
         this._loading.set(false);
       },
     });
@@ -60,6 +67,7 @@ export class CharacterStore {
   searchCharacters(searchTerm: string) {
     this._searchTerm.set(searchTerm);
     this._currentPage.set(1);
+    this._error.set(null); // Limpa erro anterior
     this.loadCharacters({ name: searchTerm });
   }
 

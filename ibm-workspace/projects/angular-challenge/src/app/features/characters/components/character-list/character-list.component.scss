@@ -2,6 +2,39 @@
   padding: 1rem;
 }
 
+// Search
+.search-container {
+  display: flex;
+  width: 100%;
+}
+
+.search-field {
+  width: 100%;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+.clear-button {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+
+  mat-icon {
+    font-size: 18px;
+    color: #666;
+  }
+
+  &:hover mat-icon {
+    color: #333;
+  }
+}
+
+// Cards
 .character-card {
   transition: transform 0.2s;
 

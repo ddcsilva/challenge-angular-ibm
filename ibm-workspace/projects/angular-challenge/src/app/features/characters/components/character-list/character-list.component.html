@@ -6,8 +6,8 @@
   </div>
 
   <!-- Search Bar -->
-  <div class="mb-6">
-    <mat-form-field appearance="outline" class="w-full max-w-md">
+  <div class="search-container mb-6">
+    <mat-form-field appearance="outline" class="search-field">
       <mat-label>Buscar personagens</mat-label>
       <input
         matInput
@@ -16,13 +16,12 @@
         [value]="store.searchTerm()"
         placeholder="Digite o nome..." />
       <mat-icon matSuffix>search</mat-icon>
+      @if (store.searchTerm()) {
+        <button mat-icon-button matSuffix (click)="onClearSearch()" class="clear-button" type="button">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
     </mat-form-field>
-
-    @if (store.searchTerm()) {
-      <button mat-icon-button (click)="onClearSearch()" class="ml-2">
-        <mat-icon>clear</mat-icon>
-      </button>
-    }
   </div>
 
   <!-- Loading State -->
@@ -37,6 +36,16 @@
   @if (store.error()) {
     <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
       <p class="text-red-600">{{ store.error() }}</p>
+    </div>
+  }
+
+  <!-- No Results State -->
+  @if (!store.loading() && !store.error() && !store.hasCharacters() && store.searchTerm()) {
+    <div class="text-center py-12">
+      <mat-icon class="text-6xl text-gray-400 mb-4">search_off</mat-icon>
+      <h3 class="text-xl font-semibold text-gray-600 mb-2">Nenhum personagem encontrado</h3>
+      <p class="text-gray-500 mb-4">Tente buscar por outro nome ou limpe a pesquisa</p>
+      <button mat-raised-button color="primary" (click)="onClearSearch()">Limpar busca</button>
     </div>
   }
 
