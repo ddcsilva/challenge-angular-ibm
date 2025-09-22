@@ -1,0 +1,31 @@
+<mat-toolbar class="header-toolbar">
+  <div class="container-portal">
+    <div class="header-content">
+      <div class="logo-section">
+        <img [src]="logoUrl" alt="Rick and Morty Logo" class="logo-image" />
+      </div>
+      <nav class="navigation-section">
+        <a [routerLink]="['/characters']" routerLinkActive="active-route" mat-button class="nav-button">
+          Personagens
+        </a>
+      </nav>
+    </div>
+  </div>
+</mat-toolbar>
+
+<main class="main-content">
+  <div class="container-portal">
+    <router-outlet />
+  </div>
+</main>
+
+<footer class="footer-section">
+  <div class="container-portal text-center">
+    <p class="footer-text">
+      Desenvolvido por
+      <span class="developer-name">Danilo Silva</span>
+      | Teste Prático Angular {{ angularVersion }} +
+      <a class="footer-link" [href]="apiUrl" target="_blank"> Rick & Morty API </a>
+    </p>
+  </div>
+</footer>

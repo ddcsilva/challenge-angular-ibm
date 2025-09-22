@@ -1,0 +1,96 @@
+// Layout principal com flexbox
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8fafc;
+}
+
+// Header fixo no topo
+.header-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  gap: 2rem;
+}
+
+// Logo
+.logo-image {
+  height: 2.5rem;
+  width: auto;
+}
+
+// Navegação
+.navigation-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-button {
+  color: #4a5568;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #f7fafc;
+    color: #3182ce;
+  }
+}
+
+.active-route {
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #bee3f8;
+  }
+}
+
+// Conteúdo principal
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 80px;
+  padding-bottom: 2rem;
+}
+
+// Footer
+.footer-section {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  padding: 1rem 0;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.developer-name {
+  font-weight: 600;
+  color: #2b6cb0;
+}
+
+.footer-link {
+  color: #3182ce;
+  font-weight: 500;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #2b6cb0;
+  }
+}

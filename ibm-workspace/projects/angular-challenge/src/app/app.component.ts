@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @Component({
   selector: 'ibm-root',
   standalone: true,
-  imports: [],
-  template: '',
+  imports: [MainLayoutComponent],
+  template: ` <ibm-main-layout></ibm-main-layout> `,
 })
 export class AppComponent {}
