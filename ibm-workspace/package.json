@@ -8,7 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:test": "prettier --list-different \"./projects/**/*.{ts,html,scss,json}\"",
-    "format:write": "prettier --write \"./projects/**/*.{ts,html,scss,json}\""
+    "format:write": "prettier --write \"./projects/**/*.{ts,html,scss,json}\"",
+    "analyze": "ng build angular-challenge --stats-json --output-hashing none --named-chunks && esbuild-visualizer --template treemap --metadata dist/angular-challenge/stats.json --filename dist/angular-challenge/analyse/index.html && http-server -o -c-1 ./dist/angular-challenge/analyse/",
+    "analyze:sme": "ng build angular-challenge --source-map --output-hashing none --named-chunks && source-map-explorer dist/angular-challenge/browser/*.js --html dist/angular-challenge/sme/index.html && http-server -o -c-1 ./dist/angular-challenge/sme/",
+    "analyze:deps": "npm-run-all analyze:deps:*",
+    "analyze:deps:all": "madge projects/angular-challenge/src/main.ts --ts-config projects/angular-challenge/tsconfig.app.json --image ./deps/angular-challenge/_all.png",
+    "analyze:deps:app": "madge --extensions ts --ts-config projects/angular-challenge/tsconfig.app.json --image ./deps/angular-challenge/app.png projects/angular-challenge/src/app/"
   },
   "private": true,
   "dependencies": {
@@ -29,13 +34,18 @@
     "@angular/cli": "^18.2.21",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
+    "esbuild-visualizer": "^0.7.0",
+    "http-server": "^14.1.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "madge": "^8.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.6.2",
+    "source-map-explorer": "^2.5.3",
     "typescript": "~5.5.2"
   }
 }
