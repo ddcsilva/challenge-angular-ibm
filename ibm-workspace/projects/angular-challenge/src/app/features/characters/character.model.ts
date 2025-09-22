@@ -74,3 +74,4 @@ export interface CharacterFilters {
   gender?: CharacterGender;
   page?: number;
 }
+    

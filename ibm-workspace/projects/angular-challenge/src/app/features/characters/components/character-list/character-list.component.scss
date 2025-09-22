@@ -1,0 +1,17 @@
+.character-list-container {
+  padding: 1rem;
+}
+
+.character-card {
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.character-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}

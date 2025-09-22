@@ -1,2 +1,53 @@
-<h1>Lista de Personagens</h1>
-<p>Em construção...</p>
+<div class="character-list-container">
+  <!-- Header -->
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Personagens Rick & Morty</h1>
+    <p class="text-gray-600">Explore os personagens da série</p>
+  </div>
+
+  <!-- Loading State -->
+  @if (store.loading()) {
+    <div class="text-center py-8">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p class="mt-4 text-gray-600">Carregando personagens...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (store.error()) {
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-red-600">{{ store.error() }}</p>
+    </div>
+  }
+
+  <!-- Characters Grid -->
+  @if (store.hasCharacters() && !store.loading()) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+      @for (character of store.characters(); track character.id) {
+        <mat-card class="character-card">
+          <img [src]="character.image" [alt]="character.name" class="character-image" />
+          <mat-card-content class="p-4">
+            <h3 class="font-semibold text-lg mb-2">{{ character.name }}</h3>
+            <p class="text-sm text-gray-600 mb-1">{{ character.species }}</p>
+            <p class="text-sm font-medium" [class]="getStatusClass(character.status)">
+              {{ character.status }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center items-center gap-4">
+      <button mat-raised-button [disabled]="!store.hasPrevPage()" (click)="store.prevPage(); store.loadCharacters()">
+        Anterior
+      </button>
+
+      <span class="text-gray-600"> Página {{ store.currentPage() }} de {{ store.totalPages() }} </span>
+
+      <button mat-raised-button [disabled]="!store.hasNextPage()" (click)="store.nextPage(); store.loadCharacters()">
+        Próxima
+      </button>
+    </div>
+  }
+</div>
