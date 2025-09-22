@@ -5,6 +5,8 @@ import { Character, CharacterApiResponse, CharacterFilters } from './character.m
 @Injectable()
 export class CharacterStore {
   private characterService = inject(CharacterService);
+  private _searchTerm = signal<string>('');
+  readonly searchTerm = this._searchTerm.asReadonly();
 
   // Estado da store
   private _characters = signal<Character[]>([]);
@@ -32,7 +34,12 @@ export class CharacterStore {
     this._loading.set(true);
     this._error.set(null);
 
-    const searchFilters = { ...filters, page: this.currentPage() };
+    const currentSearch = this.searchTerm();
+    const searchFilters = {
+      ...filters,
+      page: this.currentPage(),
+      ...(currentSearch && { name: currentSearch }),
+    };
 
     this.characterService.getCharacters(searchFilters).subscribe({
       next: (response: CharacterApiResponse) => {
@@ -45,6 +52,24 @@ export class CharacterStore {
         this._loading.set(false);
       },
     });
+  }
+
+  /**
+   * Buscar personagens por nome
+   */
+  searchCharacters(searchTerm: string) {
+    this._searchTerm.set(searchTerm);
+    this._currentPage.set(1);
+    this.loadCharacters({ name: searchTerm });
+  }
+
+  /**
+   * Limpar busca
+   */
+  clearSearch() {
+    this._searchTerm.set('');
+    this._currentPage.set(1);
+    this.loadCharacters();
   }
 
   /**

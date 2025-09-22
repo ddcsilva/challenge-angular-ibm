@@ -5,6 +5,26 @@
     <p class="text-gray-600">Explore os personagens da série</p>
   </div>
 
+  <!-- Search Bar -->
+  <div class="mb-6">
+    <mat-form-field appearance="outline" class="w-full max-w-md">
+      <mat-label>Buscar personagens</mat-label>
+      <input
+        matInput
+        #searchInput
+        (input)="onSearchChange(searchInput.value)"
+        [value]="store.searchTerm()"
+        placeholder="Digite o nome..." />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    @if (store.searchTerm()) {
+      <button mat-icon-button (click)="onClearSearch()" class="ml-2">
+        <mat-icon>clear</mat-icon>
+      </button>
+    }
+  </div>
+
   <!-- Loading State -->
   @if (store.loading()) {
     <div class="text-center py-8">

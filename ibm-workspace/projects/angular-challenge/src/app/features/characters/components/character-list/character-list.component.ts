@@ -1,28 +1,57 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { CharacterStore } from '../../character.store';
 import { CharacterStatus } from '../../character.model';
 
 @Component({
   selector: 'ibm-character-list',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatProgressSpinnerModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+  ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnInit, OnDestroy {
   protected store = inject(CharacterStore);
+
+  private searchSubject = new Subject<string>();
+  private destroy$ = new Subject<void>();
 
   ngOnInit() {
     this.store.loadCharacters();
+
+    // Setup debounce para busca
+    this.searchSubject.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(searchTerm => {
+      this.store.searchCharacters(searchTerm);
+    });
   }
 
-  /**
-   * Retorna classe CSS para status do personagem
-   */
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  protected onSearchChange(searchTerm: string) {
+    this.searchSubject.next(searchTerm);
+  }
+
+  protected onClearSearch() {
+    this.store.clearSearch();
+  }
+
   protected getStatusClass(status: CharacterStatus): string {
     switch (status) {
       case CharacterStatus.ALIVE:
