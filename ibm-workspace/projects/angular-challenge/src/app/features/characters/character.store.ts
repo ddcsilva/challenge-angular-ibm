@@ -1,6 +1,5 @@
 import { Injectable, computed, signal, inject } from '@angular/core';
-import { CharacterService } from './character.service';
-import { Character, CharacterApiResponse, CharacterFilters } from './character.model';
+import { CharacterService, Character, CharacterApiResponse, CharacterFilters } from '.';
 
 @Injectable()
 export class CharacterStore {

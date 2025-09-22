@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Character, CharacterApiResponse, CharacterFilters } from './character.model';
+import { Character, CharacterApiResponse, CharacterFilters } from '.';
 
 @Injectable()
 export class CharacterService {

@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { CharacterStore } from '../../character.store';
-import { CharacterStatus } from '../../character.model';
+import { CharacterStore, CharacterStatus } from '../..';
+import { CharacterStatusPipe, CharacterSpeciesPipe } from '../../../pipes';
 
 @Component({
   selector: 'ibm-character-list',
@@ -19,6 +19,8 @@ import { CharacterStatus } from '../../character.model';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    CharacterStatusPipe,
+    CharacterSpeciesPipe,
   ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
