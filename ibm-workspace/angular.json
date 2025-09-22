@@ -86,8 +86,18 @@
             "styles": ["projects/angular-challenge/src/styles.scss"],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/angular-challenge/**/*.ts", "projects/angular-challenge/**/*.html"],
+            "eslintConfig": "projects/angular-challenge/eslint.config.js"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": ["@schematics/angular", "angular-eslint"]
   }
 }
