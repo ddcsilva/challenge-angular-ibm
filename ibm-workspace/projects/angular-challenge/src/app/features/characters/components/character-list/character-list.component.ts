@@ -33,7 +33,6 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store.loadCharacters();
 
-    // Setup debounce para busca
     this.searchSubject.pipe(debounceTime(300), takeUntil(this.destroy$)).subscribe(searchTerm => {
       this.store.searchCharacters(searchTerm);
     });
@@ -60,9 +59,5 @@ export class CharacterListComponent implements OnInit, OnDestroy {
     this.store.clearSearch();
   }
 
-  /**
-   * Track function para otimizar performance nos loops @for
-   * Evita re-renderização desnecessária dos elementos DOM
-   */
   protected trackByCharacterId = (index: number, character: Character): number => character.id;
 }
