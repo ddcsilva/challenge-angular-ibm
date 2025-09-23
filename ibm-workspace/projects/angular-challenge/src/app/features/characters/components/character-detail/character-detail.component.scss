@@ -1,0 +1,145 @@
+.detail-container {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// Estados de loading e erro
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+
+  .loading-text {
+    margin-top: 1rem;
+    color: #666;
+  }
+
+  .error-icon {
+    font-size: 48px;
+    color: #ef4444;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+}
+
+// Header
+.detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .back-button {
+    margin-right: 1rem;
+  }
+
+  .character-name {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
+// Card principal
+.character-card {
+  .card-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
+// Imagem
+.image-section {
+  .character-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Informações
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .basic-info {
+    h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+
+  .status-chips {
+    .mat-mdc-chip {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+// Detalhes
+.character-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    .label {
+      font-weight: 500;
+      color: #666;
+      min-width: 120px;
+    }
+
+    .value {
+      color: #333;
+      text-align: right;
+    }
+  }
+}
+
+// Botões de ação
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+
+  button {
+    flex: 1;
+
+    mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}

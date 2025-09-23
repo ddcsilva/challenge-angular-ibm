@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
 import { CharacterStore, CharacterStatus } from '../..';
 import { CharacterStatusPipe, CharacterSpeciesPipe } from '../../../pipes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ibm-character-list',
@@ -28,7 +29,7 @@ import { CharacterStatusPipe, CharacterSpeciesPipe } from '../../../pipes';
 })
 export class CharacterListComponent implements OnInit, OnDestroy {
   protected store = inject(CharacterStore);
-
+  protected router = inject(Router);
   private searchSubject = new Subject<string>();
   private destroy$ = new Subject<void>();
 
@@ -44,6 +45,10 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  protected onCharacterClick(characterId: number) {
+    this.router.navigate(['/characters', characterId]);
   }
 
   protected onSearchChange(searchTerm: string) {

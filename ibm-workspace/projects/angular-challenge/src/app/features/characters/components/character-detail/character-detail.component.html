@@ -1,0 +1,112 @@
+<div class="detail-container">
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p class="loading-text">Carregando personagem...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error()) {
+    <div class="error-state">
+      <mat-icon class="error-icon">error</mat-icon>
+      <h3>Ops! Algo deu errado</h3>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="goBack()">Voltar para lista</button>
+    </div>
+  }
+
+  <!-- Character Detail -->
+  @if (character() && !loading()) {
+    <div class="character-detail">
+      <!-- Header com botão voltar -->
+      <div class="detail-header">
+        <button mat-icon-button (click)="goBack()" class="back-button">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="character-name">{{ character()!.name }}</h1>
+      </div>
+
+      <!-- Card principal -->
+      <mat-card class="character-card">
+        <div class="card-content">
+          <!-- Imagem -->
+          <div class="image-section">
+            <img [src]="character()!.image" [alt]="character()!.name" class="character-image" />
+          </div>
+
+          <!-- Informações -->
+          <div class="info-section">
+            <div class="basic-info">
+              <h2>{{ character()!.name }}</h2>
+
+              <div class="status-chips">
+                <mat-chip-set>
+                  <mat-chip [class]="getStatusClass(character()!.status)">
+                    {{ character()!.status | characterStatus }}
+                  </mat-chip>
+                  <mat-chip>
+                    {{ character()!.species | characterSpecies }}
+                  </mat-chip>
+                  @if (character()!.gender !== 'unknown') {
+                    <mat-chip>
+                      {{ character()!.gender }}
+                    </mat-chip>
+                  }
+                </mat-chip-set>
+              </div>
+            </div>
+
+            <!-- Detalhes -->
+            <div class="character-details">
+              <div class="detail-row">
+                <span class="label">Espécie:</span>
+                <span class="value">{{ character()!.species | characterSpecies }}</span>
+              </div>
+
+              @if (character()!.type) {
+                <div class="detail-row">
+                  <span class="label">Tipo:</span>
+                  <span class="value">{{ character()!.type }}</span>
+                </div>
+              }
+
+              <div class="detail-row">
+                <span class="label">Gênero:</span>
+                <span class="value">{{ character()!.gender }}</span>
+              </div>
+
+              <div class="detail-row">
+                <span class="label">Origem:</span>
+                <span class="value">{{ character()!.origin.name }}</span>
+              </div>
+
+              <div class="detail-row">
+                <span class="label">Localização:</span>
+                <span class="value">{{ character()!.location.name }}</span>
+              </div>
+
+              <div class="detail-row">
+                <span class="label">Episódios:</span>
+                <span class="value">{{ character()!.episode.length }} episódios</span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-buttons">
+              <button mat-raised-button color="primary" (click)="onEdit()">
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
+              <button mat-raised-button color="warn" (click)="onDelete()">
+                <mat-icon>delete</mat-icon>
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  }
+</div>

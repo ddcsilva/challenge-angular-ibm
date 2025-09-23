@@ -5,6 +5,15 @@ export default [
   {
     path: '',
     providers: [CharacterService, CharacterStore],
-    loadComponent: () => import('./components').then(m => m.CharacterListComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./components').then(m => m.CharacterListComponent),
+      },
+      {
+        path: ':id',
+        loadComponent: () => import('./components').then(m => m.CharacterDetailComponent),
+      },
+    ],
   },
 ] as Routes;
