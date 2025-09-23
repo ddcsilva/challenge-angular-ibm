@@ -1,27 +1,24 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { CharacterStore, CharacterStatus } from '../..';
-import { CharacterStatusPipe, CharacterSpeciesPipe } from '../../../pipes';
+import { CharacterStore } from '@features/characters';
 import { Router } from '@angular/router';
+import { CharacterCardComponent } from '@ui/components/character-card/character-card.component';
 
 @Component({
   selector: 'ibm-character-list',
   standalone: true,
   imports: [
-    MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    CharacterStatusPipe,
-    CharacterSpeciesPipe,
+    CharacterCardComponent,
   ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
@@ -47,7 +44,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  protected onCharacterClick(characterId: number) {
+  protected onCharacterCardClick(characterId: number) {
     this.router.navigate(['/characters', characterId]);
   }
 
@@ -57,16 +54,5 @@ export class CharacterListComponent implements OnInit, OnDestroy {
 
   protected onClearSearch() {
     this.store.clearSearch();
-  }
-
-  protected getStatusClass(status: CharacterStatus): string {
-    switch (status) {
-      case CharacterStatus.ALIVE:
-        return 'text-green-600';
-      case CharacterStatus.DEAD:
-        return 'text-red-600';
-      default:
-        return 'text-gray-600';
-    }
   }
 }

@@ -19,10 +19,14 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"],
+    "baseUrl": "projects/angular-challenge/src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@features/*": ["app/features/*"],
+      "@ui/*": ["app/ui/*"],
+      "@core/*": ["app/core/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

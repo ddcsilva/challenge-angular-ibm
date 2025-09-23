@@ -1,0 +1,12 @@
+<mat-card class="character-card" (click)="onCardClick()">
+  <img [src]="character().image" [alt]="character().name" class="character-image" />
+  <mat-card-content class="card-content">
+    <h3 class="character-name">{{ character().name }}</h3>
+    <p class="character-species">
+      {{ character().species | characterSpecies }}
+    </p>
+    <p class="character-status" [class]="getStatusClass(character().status)">
+      {{ character().status | characterStatus }}
+    </p>
+  </mat-card-content>
+</mat-card>

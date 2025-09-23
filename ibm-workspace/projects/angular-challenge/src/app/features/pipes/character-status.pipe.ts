@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CharacterStatus } from '../characters';
+import { CharacterStatus } from '@features/characters';
 
 @Pipe({
   name: 'characterStatus',

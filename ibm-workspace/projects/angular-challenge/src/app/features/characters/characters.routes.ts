@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { CharacterService, CharacterStore } from '.';
+import { CharacterService, CharacterStore } from '@features/characters';
 
 export default [
   {

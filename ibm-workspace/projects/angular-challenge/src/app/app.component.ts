@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MainLayoutComponent } from './layout';
+import { MainLayoutComponent } from '@app/layout';
 
 @Component({
   selector: 'ibm-root',
