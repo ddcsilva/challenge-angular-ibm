@@ -1,3 +1,6 @@
+/**
+ * Representa um personagem da série Rick and Morty
+ */
 export interface Character {
   id: number;
   name: string;
@@ -74,4 +77,3 @@ export interface CharacterFilters {
   gender?: CharacterGender;
   page?: number;
 }
-    

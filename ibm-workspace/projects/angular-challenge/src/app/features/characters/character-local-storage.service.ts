@@ -8,6 +8,7 @@ export class CharacterLocalStorageService {
 
   /**
    * Obtém todos os personagens criados localmente
+   * @returns Todos os personagens criados localmente
    */
   getLocalCharacters(): Character[] {
     try {
@@ -21,6 +22,8 @@ export class CharacterLocalStorageService {
 
   /**
    * Salva um novo personagem no localStorage
+   * @param characterForm - O formulário do personagem a ser salvo
+   * @returns O personagem salvo
    */
   saveCharacter(characterForm: CharacterForm): Character {
     const characters = this.getLocalCharacters();
@@ -55,6 +58,9 @@ export class CharacterLocalStorageService {
 
   /**
    * Atualiza um personagem existente
+   * @param id - O ID do personagem a ser atualizado
+   * @param characterForm - O formulário do personagem a ser atualizado
+   * @returns O personagem atualizado ou null se o personagem não foi encontrado
    */
   updateCharacter(id: number, characterForm: CharacterForm): Character | null {
     const characters = this.getLocalCharacters();
@@ -81,13 +87,15 @@ export class CharacterLocalStorageService {
 
   /**
    * Remove um personagem do localStorage
+   * @param id - O ID do personagem a ser removido
+   * @returns true se o personagem foi removido com sucesso, false caso contrário
    */
   deleteCharacter(id: number): boolean {
     const characters = this.getLocalCharacters();
     const filteredCharacters = characters.filter(char => char.id !== id);
 
     if (filteredCharacters.length === characters.length) {
-      return false; // Personagem não encontrado
+      return false;
     }
 
     this.saveToStorage(filteredCharacters);
@@ -96,6 +104,8 @@ export class CharacterLocalStorageService {
 
   /**
    * Verifica se um personagem foi criado localmente
+   * @param id - O ID do personagem a ser verificado
+   * @returns true se o personagem foi criado localmente, false caso contrário
    */
   isLocalCharacter(id: number): boolean {
     const characters = this.getLocalCharacters();
@@ -104,6 +114,8 @@ export class CharacterLocalStorageService {
 
   /**
    * Busca um personagem local por ID
+   * @param id - O ID do personagem a ser buscado
+   * @returns O personagem local ou null se o personagem não foi encontrado
    */
   getLocalCharacterById(id: number): Character | null {
     const characters = this.getLocalCharacters();
@@ -120,6 +132,7 @@ export class CharacterLocalStorageService {
 
   /**
    * Exporta personagens locais como JSON
+   * @returns O JSON dos personagens locais
    */
   exportLocalCharacters(): string {
     const characters = this.getLocalCharacters();
@@ -128,11 +141,16 @@ export class CharacterLocalStorageService {
 
   /**
    * Conta quantos personagens estão armazenados localmente
+   * @returns A quantidade de personagens locais
    */
   getLocalCharactersCount(): number {
     return this.getLocalCharacters().length;
   }
 
+  /**
+   * Gera um ID para um novo personagem
+   * @returns O ID gerado
+   */
   private generateId(): number {
     // IDs locais começam em 10000 para evitar conflito com a API
     const MIN_LOCAL_ID = 10000;
@@ -150,8 +168,12 @@ export class CharacterLocalStorageService {
     }
   }
 
+  /**
+   * Gera uma imagem de placeholder baseada no nome
+   * @param name - O nome do personagem
+   * @returns A URL da imagem de placeholder
+   */
   private generatePlaceholderImage(name: string): string {
-    // Gera uma imagem de placeholder baseada no nome
     const encodedName = encodeURIComponent(name);
     const bgColor = this.generateColorFromName(name);
     const textColor = this.getContrastColor(bgColor);
@@ -159,8 +181,12 @@ export class CharacterLocalStorageService {
     return `https://ui-avatars.com/api/?name=${encodedName}&size=300&background=${bgColor}&color=${textColor}&bold=true&format=png`;
   }
 
+  /**
+   * Gera uma cor baseada no hash do nome
+   * @param name - O nome do personagem
+   * @returns A cor gerada
+   */
   private generateColorFromName(name: string): string {
-    // Gera uma cor baseada no hash do nome
     let hash = 0;
     for (let i = 0; i < name.length; i++) {
       hash = name.charCodeAt(i) + ((hash << 5) - hash);
@@ -170,8 +196,12 @@ export class CharacterLocalStorageService {
     return color.toUpperCase();
   }
 
+  /**
+   * Calcula se deve usar texto claro ou escuro baseado na cor de fundo
+   * @param hexColor - A cor de fundo em formato hexadecimal
+   * @returns A cor do texto
+   */
   private getContrastColor(hexColor: string): string {
-    // Calcula se deve usar texto claro ou escuro baseado na cor de fundo
     const r = parseInt(hexColor.substr(0, 2), 16);
     const g = parseInt(hexColor.substr(2, 2), 16);
     const b = parseInt(hexColor.substr(4, 2), 16);
@@ -180,6 +210,10 @@ export class CharacterLocalStorageService {
     return brightness > 128 ? '000000' : 'FFFFFF';
   }
 
+  /**
+   * Salva os personagens no localStorage
+   * @param characters - Os personagens a serem salvos
+   */
   private saveToStorage(characters: Character[]): void {
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(characters));

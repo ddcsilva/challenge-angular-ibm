@@ -27,7 +27,6 @@ export class CharacterCreateComponent {
         panelClass: ['success-snackbar'],
       });
 
-      // Redireciona para a lista
       this.router.navigate(['/characters']);
     } catch (error) {
       console.error('Erro ao criar personagem:', error);
