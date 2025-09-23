@@ -12,7 +12,7 @@ module.exports = {
     '!projects/**/src/environments/**',
   ],
   transformIgnorePatterns: ['node_modules/(?!@angular|@ngrx|ngx-socket-io)'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@app/(.*)$': '<rootDir>/projects/angular-challenge/src/app/$1',
     '^@features/(.*)$': '<rootDir>/projects/angular-challenge/src/app/features/$1',
     '^@ui/(.*)$': '<rootDir>/projects/angular-challenge/src/app/ui/$1',
