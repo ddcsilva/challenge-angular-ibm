@@ -168,8 +168,14 @@ npm run test:coverage
 
 ### Estrutura de Testes
 
-- **Unit Tests** - Componentes, serviços e pipes
+- **Unit Tests** - Componentes, serviços e pipes (85 testes)
 - **Mock Strategy** - APIs mockadas para testes isolados
+- **Coverage Areas**:
+  - ✅ Componentes (CharacterList, CharacterDetail, CharacterCreate, CharacterEdit, CharacterForm)
+  - ✅ Serviços (CharacterService, CharacterLocalStorageService)
+  - ✅ Store (CharacterStore com Signals)
+  - ✅ Layout Components (MainLayout)
+  - ✅ Testes de integração e casos extremos
 
 ## 🚀 Instalação e Execução
 
@@ -369,7 +375,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 | Aspecto | Status | Ferramenta |
 |---------|--------|------------|
-| **🧪 Testes** | ⚠️ | Jest configurado |
+| **🧪 Testes** | ✅ | Jest com 85 testes passando |
 | **📐 Linting** | ✅ | ESLint + Angular ESLint |
 | **🎨 Formatação** | ✅ | Prettier configurado |
 | **📊 Análise** | ✅ | Bundle analyzer disponível |
