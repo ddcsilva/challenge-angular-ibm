@@ -51,7 +51,7 @@
                   </mat-chip>
                   @if (character()!.gender !== 'unknown') {
                     <mat-chip>
-                      {{ character()!.gender }}
+                      {{ character()!.gender | characterGender }}
                     </mat-chip>
                   }
                 </mat-chip-set>
@@ -74,7 +74,7 @@
 
               <div class="detail-row">
                 <span class="label">Gênero:</span>
-                <span class="value">{{ character()!.gender }}</span>
+                <span class="value">{{ character()!.gender | characterGender }}</span>
               </div>
 
               <div class="detail-row">
