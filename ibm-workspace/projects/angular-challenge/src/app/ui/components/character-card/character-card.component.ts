@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { Character, CharacterSpeciesPipe, CharacterStatusPipe } from '@features/index';
+import { Character } from '@features/index';
+import { CharacterSpeciesPipe, CharacterStatusPipe } from '@ui/index';
 
 @Component({
   selector: 'ibm-character-card',

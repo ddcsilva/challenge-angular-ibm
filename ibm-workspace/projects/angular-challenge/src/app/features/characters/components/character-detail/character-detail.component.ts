@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { Character, CharacterService } from '@features/characters';
-import { CharacterSpeciesPipe, CharacterStatusPipe, CharacterGenderPipe } from '@features/pipes';
+import { CharacterSpeciesPipe, CharacterStatusPipe, CharacterGenderPipe } from '@ui/index';
 
 @Component({
   selector: 'ibm-character-detail',
