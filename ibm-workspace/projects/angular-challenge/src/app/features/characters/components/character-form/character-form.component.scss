@@ -15,30 +15,11 @@
   width: 100%;
 }
 
-// Status indicator styles
+// Status option styles
 .status-option {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.status-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-
-  &.status-alive {
-    background-color: #22c55e;
-  }
-
-  &.status-dead {
-    background-color: #ef4444;
-  }
-
-  &.status-unknown {
-    background-color: #6b7280;
-  }
 }
 
 // Gender option styles
@@ -46,12 +27,6 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.gender-icon {
-  font-size: 1rem;
-  width: 1rem;
-  height: 1rem;
 }
 
 // Form actions

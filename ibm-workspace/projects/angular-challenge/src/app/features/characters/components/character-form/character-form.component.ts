@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { Character, CharacterStatus, CharacterGender, CharacterForm, CharacterStore } from '@features/characters';
-import { CharacterSpeciesPipe, CharacterStatusPipe, CharacterGenderPipe } from '@ui/index';
+import { CharacterStatusPipe, CharacterGenderPipe } from '@ui/index';
 
 @Component({
   selector: 'ibm-character-form',
@@ -25,7 +25,6 @@ import { CharacterSpeciesPipe, CharacterStatusPipe, CharacterGenderPipe } from '
     MatCardModule,
     MatIconModule,
     MatSnackBarModule,
-    CharacterSpeciesPipe,
     CharacterStatusPipe,
     CharacterGenderPipe,
   ],

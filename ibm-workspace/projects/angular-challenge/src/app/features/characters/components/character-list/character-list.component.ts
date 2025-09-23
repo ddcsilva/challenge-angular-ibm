@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { CharacterStore } from '@features/characters';
+import { CharacterStore, Character } from '@features/characters';
 import { Router } from '@angular/router';
 import { CharacterCardComponent } from '@ui/components/character-card/character-card.component';
 
@@ -59,4 +59,10 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   protected onClearSearch() {
     this.store.clearSearch();
   }
+
+  /**
+   * Track function para otimizar performance nos loops @for
+   * Evita re-renderização desnecessária dos elementos DOM
+   */
+  protected trackByCharacterId = (index: number, character: Character): number => character.id;
 }

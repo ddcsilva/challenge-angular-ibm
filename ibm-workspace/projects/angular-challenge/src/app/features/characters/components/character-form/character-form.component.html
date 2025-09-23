@@ -30,10 +30,7 @@
           <mat-select formControlName="status">
             @for (status of statusOptions; track status) {
               <mat-option [value]="status">
-                <span class="status-option">
-                  <span [class]="'status-indicator status-' + status.toLowerCase()"></span>
-                  {{ status | characterStatus }}
-                </span>
+                {{ status | characterStatus }}
               </mat-option>
             }
           </mat-select>
@@ -47,7 +44,7 @@
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Espécie</mat-label>
           <input matInput formControlName="species" placeholder="Ex: Human" maxlength="30" autocomplete="off" />
-          <mat-icon matSuffix>pets</mat-icon>
+          <mat-icon matSuffix>science</mat-icon>
           <mat-hint>Mínimo 2, máximo 30 caracteres</mat-hint>
           @if (isFieldInvalid('species')) {
             <mat-error>{{ getFieldError('species') }}</mat-error>
@@ -60,22 +57,7 @@
           <mat-select formControlName="gender">
             @for (gender of genderOptions; track gender) {
               <mat-option [value]="gender">
-                <span class="gender-option">
-                  <mat-icon class="gender-icon">
-                    @switch (gender) {
-                      @case (CharacterGender.MALE) {
-                        male
-                      }
-                      @case (CharacterGender.FEMALE) {
-                        female
-                      }
-                      @default {
-                        help_outline
-                      }
-                    }
-                  </mat-icon>
-                  {{ gender | characterGender }}
-                </span>
+                {{ gender | characterGender }}
               </mat-option>
             }
           </mat-select>
@@ -123,10 +105,7 @@
             Salvando...
           </ng-container>
         } @else {
-          <ng-container>
-            <mat-icon>{{ isEditing() ? 'save' : 'add' }}</mat-icon>
-            {{ isEditing() ? 'Atualizar' : 'Criar' }} Personagem
-          </ng-container>
+          <ng-container> {{ isEditing() ? 'Atualizar' : 'Criar' }} </ng-container>
         }
       </button>
     </mat-card-actions>

@@ -67,7 +67,7 @@
           Personagens Criados ({{ store.localCharactersCount() }})
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
-          @for (character of store.localCharacters(); track character.id) {
+          @for (character of store.localCharacters(); track trackByCharacterId($index, character)) {
             <ibm-character-card [character]="character" (cardClick)="onCharacterCardClick($event)" />
           }
         </div>
@@ -82,7 +82,7 @@
           Personagens da API Rick & Morty
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
-          @for (character of store.characters(); track character.id) {
+          @for (character of store.characters(); track trackByCharacterId($index, character)) {
             <ibm-character-card [character]="character" (cardClick)="onCharacterCardClick($event)" />
           }
         </div>
