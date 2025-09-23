@@ -1,3 +1,41 @@
+// ADICIONAR estilos para header
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.title-section {
+  flex: 1;
+}
+
+.action-section {
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    align-self: stretch;
+  }
+}
+
+.create-button {
+  min-width: 200px;
+
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
 .character-list-container {
   padding: 1rem;
 }

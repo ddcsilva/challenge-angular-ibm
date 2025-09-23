@@ -1,8 +1,17 @@
 <div class="character-list-container">
   <!-- Header -->
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800 mb-2">Personagens Rick & Morty</h1>
-    <p class="text-gray-600">Explore os personagens da série</p>
+  <div class="header-section mb-6">
+    <div class="title-section">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">Personagens Rick & Morty</h1>
+      <p class="text-gray-600">Explore os personagens da série</p>
+    </div>
+
+    <div class="action-section">
+      <button mat-raised-button color="primary" (click)="onCreateCharacter()" class="create-button">
+        <mat-icon>add</mat-icon>
+        Criar Novo Personagem
+      </button>
+    </div>
   </div>
 
   <!-- Search Bar -->
