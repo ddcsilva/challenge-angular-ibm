@@ -49,9 +49,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   }
 
   protected onCreateCharacter() {
-    // TODO: Implementar navegação para formulário
-    console.log('Criar novo personagem');
-    // this.router.navigate(['/characters/new']);
+    this.router.navigate(['/characters/new']);
   }
 
   protected onSearchChange(searchTerm: string) {

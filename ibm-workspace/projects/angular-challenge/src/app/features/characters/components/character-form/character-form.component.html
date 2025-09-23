@@ -1,0 +1,134 @@
+<div class="character-form-container">
+  <mat-card class="form-card">
+    <!-- Header -->
+    <mat-card-header>
+      <mat-card-title>
+        {{ isEditing() ? 'Editar Personagem' : 'Criar Personagem' }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ isEditing() ? 'Modifique os dados do personagem' : 'Preencha os dados para criar um novo personagem' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Form Content -->
+    <mat-card-content>
+      <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="character-form">
+        <!-- Nome -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome do Personagem</mat-label>
+          <input matInput formControlName="name" placeholder="Ex: Rick Sanchez" maxlength="50" autocomplete="off" />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint>Mínimo 2, máximo 50 caracteres</mat-hint>
+          @if (isFieldInvalid('name')) {
+            <mat-error>{{ getFieldError('name') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Status -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            @for (status of statusOptions; track status) {
+              <mat-option [value]="status">
+                <span class="status-option">
+                  <span [class]="'status-indicator status-' + status.toLowerCase()"></span>
+                  {{ status | characterStatus }}
+                </span>
+              </mat-option>
+            }
+          </mat-select>
+          <mat-icon matSuffix>favorite</mat-icon>
+          @if (isFieldInvalid('status')) {
+            <mat-error>{{ getFieldError('status') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Espécie -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Espécie</mat-label>
+          <input matInput formControlName="species" placeholder="Ex: Human" maxlength="30" autocomplete="off" />
+          <mat-icon matSuffix>pets</mat-icon>
+          <mat-hint>Mínimo 2, máximo 30 caracteres</mat-hint>
+          @if (isFieldInvalid('species')) {
+            <mat-error>{{ getFieldError('species') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Gênero -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Gênero</mat-label>
+          <mat-select formControlName="gender">
+            @for (gender of genderOptions; track gender) {
+              <mat-option [value]="gender">
+                <span class="gender-option">
+                  <mat-icon class="gender-icon">
+                    @switch (gender) {
+                      @case (CharacterGender.MALE) {
+                        male
+                      }
+                      @case (CharacterGender.FEMALE) {
+                        female
+                      }
+                      @default {
+                        help_outline
+                      }
+                    }
+                  </mat-icon>
+                  {{ gender | characterGender }}
+                </span>
+              </mat-option>
+            }
+          </mat-select>
+          <mat-icon matSuffix>wc</mat-icon>
+          @if (isFieldInvalid('gender')) {
+            <mat-error>{{ getFieldError('gender') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Tipo (Opcional) -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tipo (Opcional)</mat-label>
+          <input
+            matInput
+            formControlName="type"
+            placeholder="Ex: Clone, Robot, etc."
+            maxlength="50"
+            autocomplete="off" />
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-hint>Campo opcional - máximo 50 caracteres</mat-hint>
+          @if (isFieldInvalid('type')) {
+            <mat-error>{{ getFieldError('type') }}</mat-error>
+          }
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <!-- Actions -->
+    <mat-card-actions align="end" class="form-actions">
+      <button mat-button type="button" (click)="onCancel()" [disabled]="isSubmitting()">Cancelar</button>
+
+      <button mat-button type="button" (click)="onReset()" [disabled]="isSubmitting() || characterForm.pristine">
+        Limpar
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="characterForm.invalid || isSubmitting()">
+        @if (isSubmitting()) {
+          <ng-container>
+            <mat-icon class="spinning">refresh</mat-icon>
+            Salvando...
+          </ng-container>
+        } @else {
+          <ng-container>
+            <mat-icon>{{ isEditing() ? 'save' : 'add' }}</mat-icon>
+            {{ isEditing() ? 'Atualizar' : 'Criar' }} Personagem
+          </ng-container>
+        }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -95,14 +95,35 @@
 
             <!-- Actions -->
             <div class="action-buttons">
-              <button mat-raised-button color="primary" (click)="onEdit()">
-                <mat-icon>edit</mat-icon>
-                Editar
-              </button>
-              <button mat-raised-button color="warn" (click)="onDelete()">
-                <mat-icon>delete</mat-icon>
-                Excluir
-              </button>
+              @if (isLocalCharacter()) {
+                <!-- Badges para personagem local -->
+                <div class="local-character-badge">
+                  <mat-icon class="local-icon">star</mat-icon>
+                  <span>Personagem Local</span>
+                </div>
+
+                <!-- Botões de ação para personagens locais -->
+                <div class="action-buttons-row">
+                  <button mat-raised-button color="primary" (click)="onEdit()">
+                    <mat-icon>edit</mat-icon>
+                    Editar
+                  </button>
+                  <button mat-raised-button color="warn" (click)="onDelete()">
+                    <mat-icon>delete</mat-icon>
+                    Excluir
+                  </button>
+                </div>
+              } @else {
+                <!-- Badge para personagem da API -->
+                <div class="api-character-badge">
+                  <mat-icon class="api-icon">cloud</mat-icon>
+                  <span>Personagem da API Rick & Morty</span>
+                </div>
+                <p class="readonly-note">
+                  Este personagem é somente leitura. Apenas personagens criados localmente podem ser editados ou
+                  excluídos.
+                </p>
+              }
             </div>
           </div>
         </div>

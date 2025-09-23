@@ -1,0 +1,102 @@
+.character-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.character-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Status indicator styles
+.status-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+
+  &.status-alive {
+    background-color: #22c55e;
+  }
+
+  &.status-dead {
+    background-color: #ef4444;
+  }
+
+  &.status-unknown {
+    background-color: #6b7280;
+  }
+}
+
+// Gender option styles
+.gender-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gender-icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+// Form actions
+.form-actions {
+  gap: 0.5rem;
+}
+
+// Loading animation
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .character-form-container {
+    margin: 1rem 0.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// Custom snackbar styles (global)
+:host ::ng-deep {
+  .success-snackbar {
+    background-color: #22c55e !important;
+    color: white !important;
+  }
+
+  .error-snackbar {
+    background-color: #ef4444 !important;
+    color: white !important;
+  }
+}

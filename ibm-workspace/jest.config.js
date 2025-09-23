@@ -12,6 +12,12 @@ module.exports = {
     '!projects/**/src/environments/**',
   ],
   transformIgnorePatterns: ['node_modules/(?!@angular|@ngrx|ngx-socket-io)'],
+  moduleNameMapping: {
+    '^@app/(.*)$': '<rootDir>/projects/angular-challenge/src/app/$1',
+    '^@features/(.*)$': '<rootDir>/projects/angular-challenge/src/app/features/$1',
+    '^@ui/(.*)$': '<rootDir>/projects/angular-challenge/src/app/ui/$1',
+    '^@core/(.*)$': '<rootDir>/projects/angular-challenge/src/app/core/$1',
+  },
   transform: {
     '^.+\\.(ts|js|mjs|html|svg)$': [
       'jest-preset-angular',

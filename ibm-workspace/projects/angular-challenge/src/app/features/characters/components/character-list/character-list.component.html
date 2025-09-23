@@ -8,8 +8,7 @@
 
     <div class="action-section">
       <button mat-raised-button color="primary" (click)="onCreateCharacter()" class="create-button">
-        <mat-icon>add</mat-icon>
-        Criar Novo Personagem
+        Criar Personagem
       </button>
     </div>
   </div>
@@ -60,23 +59,49 @@
 
   <!-- Characters Grid -->
   @if (store.hasCharacters() && !store.loading()) {
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
-      @for (character of store.characters(); track character.id) {
-        <ibm-character-card [character]="character" (cardClick)="onCharacterCardClick($event)" />
-      }
-    </div>
+    <!-- Local Characters Section -->
+    @if (store.localCharactersCount() > 0) {
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <mat-icon class="text-green-600">star</mat-icon>
+          Personagens Criados ({{ store.localCharactersCount() }})
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+          @for (character of store.localCharacters(); track character.id) {
+            <ibm-character-card [character]="character" (cardClick)="onCharacterCardClick($event)" />
+          }
+        </div>
+      </div>
+    }
+
+    <!-- API Characters Section -->
+    @if (store.characters().length > 0) {
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <mat-icon class="text-blue-600">cloud</mat-icon>
+          Personagens da API Rick & Morty
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+          @for (character of store.characters(); track character.id) {
+            <ibm-character-card [character]="character" (cardClick)="onCharacterCardClick($event)" />
+          }
+        </div>
+      </div>
+    }
 
     <!-- Pagination -->
-    <div class="flex justify-center items-center gap-4">
-      <button mat-raised-button [disabled]="!store.hasPrevPage()" (click)="store.prevPage(); store.loadCharacters()">
-        Anterior
-      </button>
+    @if (store.characters().length > 0) {
+      <div class="flex justify-center items-center gap-4">
+        <button mat-raised-button [disabled]="!store.hasPrevPage()" (click)="store.prevPage(); store.loadCharacters()">
+          Anterior
+        </button>
 
-      <span class="text-gray-600"> Página {{ store.currentPage() }} de {{ store.totalPages() }} </span>
+        <span class="text-gray-600"> Página {{ store.currentPage() }} de {{ store.totalPages() }} </span>
 
-      <button mat-raised-button [disabled]="!store.hasNextPage()" (click)="store.nextPage(); store.loadCharacters()">
-        Próxima
-      </button>
-    </div>
+        <button mat-raised-button [disabled]="!store.hasNextPage()" (click)="store.nextPage(); store.loadCharacters()">
+          Próxima
+        </button>
+      </div>
+    }
   }
 </div>

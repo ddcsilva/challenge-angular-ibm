@@ -127,9 +127,49 @@
 
 // Botões de ação
 .action-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.local-character-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+
+  .local-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.api-character-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+
+  .api-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.action-buttons-row {
   display: flex;
   gap: 1rem;
-  margin-top: auto;
 
   button {
     flex: 1;
@@ -139,7 +179,19 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex-direction: column;
+
+    button {
+      width: 100%;
+    }
   }
+}
+
+.readonly-note {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  font-style: italic;
 }
