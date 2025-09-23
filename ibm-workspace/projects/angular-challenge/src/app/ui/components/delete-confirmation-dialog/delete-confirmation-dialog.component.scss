@@ -1,0 +1,68 @@
+.delete-confirmation-dialog {
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.warning-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  color: #f59e0b;
+}
+
+.dialog-content {
+  margin: 1rem 0;
+}
+
+.item-highlight {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.warning-text {
+  color: #dc2626;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.cancel-button {
+  min-width: 100px;
+}
+
+.confirm-button {
+  min-width: 120px;
+}
+
+@media (max-width: 480px) {
+  .delete-confirmation-dialog {
+    min-width: 300px;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+      margin: 0 !important;
+    }
+  }
+}

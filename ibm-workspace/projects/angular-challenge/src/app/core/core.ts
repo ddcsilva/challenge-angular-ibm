@@ -33,7 +33,7 @@ export function provideCore({ routes }: CoreOptions) {
       provide: ENVIRONMENT_INITIALIZER,
       multi: true,
       useValue() {
-        // Inicialização do ambiente da aplicação Angular Challenge
+        console.log('Angular Challenge iniciado!');
       },
     },
   ];

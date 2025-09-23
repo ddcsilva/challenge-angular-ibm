@@ -1,0 +1,26 @@
+<div class="delete-confirmation-dialog">
+  <div class="dialog-header">
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+  </div>
+
+  <mat-dialog-content class="dialog-content">
+    <p>{{ data.message }}</p>
+    @if (data.itemName) {
+      <div class="item-highlight">
+        <strong>"{{ data.itemName }}"</strong>
+      </div>
+    }
+    <p class="warning-text">Esta ação não pode ser desfeita.</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onCancel()" class="cancel-button">
+      {{ data.cancelButtonText || 'Cancelar' }}
+    </button>
+
+    <button mat-raised-button color="warn" (click)="onConfirm()" class="confirm-button">
+      <mat-icon>delete</mat-icon>
+      {{ data.confirmButtonText || 'Excluir' }}
+    </button>
+  </mat-dialog-actions>
+</div>

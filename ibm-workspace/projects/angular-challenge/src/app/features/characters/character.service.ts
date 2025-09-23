@@ -10,6 +10,8 @@ export class CharacterService {
 
   /**
    * Busca lista de personagens com filtros opcionais
+   * @param filters - Filtros opcionais para a busca
+   * @returns Observable com a lista de personagens encontrados
    */
   getCharacters(filters?: CharacterFilters): Observable<CharacterApiResponse> {
     const params = this.buildParams(filters);
@@ -18,6 +20,8 @@ export class CharacterService {
 
   /**
    * Busca personagem por ID
+   * @param id - ID do personagem
+   * @returns Observable com o personagem encontrado
    */
   getCharacterById(id: number): Observable<Character> {
     return this.http.get<Character>(`${this.apiUrl}/${id}`);
@@ -25,6 +29,8 @@ export class CharacterService {
 
   /**
    * Constrói parâmetros da query string
+   * @param filters - Filtros opcionais para a busca
+   * @returns Parâmetros da query string
    */
   private buildParams(filters?: CharacterFilters): Record<string, string> {
     if (!filters) return {};
